@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobilité Internationale - ENSIAS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8f9fc;
+            color: #1e1e2a;
+            scroll-behavior: smooth;
+            line-height: 1.6;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== VARIABLES ===== */
+        :root {
+            --ensias-red: #C5002B;
+            --ensias-red-dark: #9e0022;
+            --ensias-red-light: #ffebee;
+            --gray-100: #f1f3f5;
+            --gray-200: #e9ecef;
+            --gray-600: #6c757d;
+            --gray-800: #343a40;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --shadow-hover: 0 20px 40px rgba(197,0,43,0.12);
+            --radius: 16px;
+            --transition: 0.3s ease;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 14px 0;
+        }
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: var(--ensias-red);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo i {
+            font-size: 1.5rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        .nav-links a {
+            color: var(--gray-800);
+            transition: color var(--transition);
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--ensias-red);
+            transition: width var(--transition);
+        }
+        .nav-links a:hover {
+            color: var(--ensias-red);
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray-800);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(135deg, #fff 60%, var(--ensias-red-light));
+            padding: 70px 0 60px;
+            border-bottom: 4px solid var(--ensias-red);
+        }
+        .hero .container {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .hero-content {
+            flex: 1 1 50%;
+        }
+        .hero-content h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+        .hero-content h1 span {
+            color: var(--ensias-red);
+        }
+        .hero-content p {
+            font-size: 1.15rem;
+            color: var(--gray-600);
+            max-width: 500px;
+            margin-bottom: 24px;
+        }
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: var(--ensias-red);
+            color: white;
+        }
+        .btn-primary:hover {
+            background: var(--ensias-red-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(197,0,43,0.3);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--ensias-red);
+            border: 2px solid var(--ensias-red);
+        }
+        .btn-outline:hover {
+            background: var(--ensias-red);
+            color: white;
+        }
+        .hero-stats {
+            flex: 1 1 40%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            background: white;
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--ensias-red);
+        }
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            margin-top: 4px;
+        }
+
+        /* ===== SECTIONS GLOBALES ===== */
+        section {
+            padding: 70px 0;
+        }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--ensias-red);
+            margin-top: 8px;
+            border-radius: 4px;
+        }
+        .section-sub {
+            color: var(--gray-600);
+            margin-bottom: 40px;
+            font-size: 1.05rem;
+        }
+
+        /* ===== PROCESSUS (4 passes) ===== */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .process-card {
+            background: white;
+            padding: 28px 20px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border-left: 6px solid var(--ensias-red);
+            transition: all var(--transition);
+            position: relative;
+        }
+        .process-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+        .process-card .step {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--ensias-red);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .process-card h3 {
+            font-size: 1.2rem;
+            margin: 8px 0 10px;
+        }
+        .process-card p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+        }
+        .process-card .highlight {
+            background: var(--ensias-red-light);
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            border-left: 3px solid var(--ensias-red);
+        }
+        .process-card .highlight strong {
+            color: var(--ensias-red);
+        }
+        .process-card .detail-list {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--gray-600);
+        }
+        .process-card .detail-list li {
+            padding: 3px 0;
+            padding-left: 18px;
+            position: relative;
+        }
+        .process-card .detail-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--ensias-red);
+            font-weight: 700;
+        }
+        .process-card .formula-box {
+            background: #f1f3f5;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            text-align: center;
+            font-weight: 600;
+            color: var(--ensias-red);
+        }
+        .process-card .modules-list {
+            margin-top: 8px;
+            font-size: 0.8rem;
+            color: var(--gray-600);
+        }
+        .process-card .modules-list span {
+            display: inline-block;
+            background: var(--gray-100);
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin: 2px 4px 2px 0;
+        }
+
+        /* ===== DOSSIER DE CANDIDATURE ===== */
+        .dossier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 16px;
+            margin-top: 10px;
+        }
+        .dossier-item {
+            background: white;
+            padding: 16px 20px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all var(--transition);
+            border-left: 4px solid var(--ensias-red);
+        }
+        .dossier-item:hover {
+            transform: translateX(4px);
+            box-shadow: var(--shadow-hover);
+        }
+        .dossier-item i {
+            color: var(--ensias-red);
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+        }
+        .dossier-item span {
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        /* ===== PARTENAIRES - SECTION CARTES ===== */
+        .partners-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        .partner-badge {
+            background: white;
+            padding: 16px 12px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: all var(--transition);
+            border: 2px solid transparent;
+            cursor: default;
+        }
+        .partner-badge:hover {
+            border-color: var(--ensias-red);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+        .partner-badge .flag {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .partner-badge .pays {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--gray-800);
+        }
+        .partner-badge .count {
+            font-size: 0.75rem;
+            color: var(--gray-600);
+            margin-top: 2px;
+        }
+
+        /* ===== PARTENAIRES / TABLEAU ===== */
+        .table-wrapper {
+            overflow-x: auto;
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 4px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        thead {
+            background: var(--ensias-red);
+            color: white;
+        }
+        th,
+        td {
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        th {
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        tr:hover td {
+            background: var(--ensias-red-light);
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .badge-dd {
+            background: #d4edda;
+            color: #155724;
+        }
+        .badge-ec {
+            background: #cce5ff;
+            color: #004085;
+        }
+        .badge-both {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .filter-bar {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .filter-bar input {
+            flex: 1;
+            min-width: 180px;
+            padding: 10px 16px;
+            border: 2px solid var(--gray-200);
+            border-radius: 50px;
+            font-size: 0.95rem;
+            transition: border var(--transition);
+        }
+        .filter-bar input:focus {
+            outline: none;
+            border-color: var(--ensias-red);
+        }
+        .filter-bar select {
+            padding: 10px 16px;
+            border: 2px solid var(--gray-200);
+            border-radius: 50px;
+            background: white;
+            font-size: 0.95rem;
+            cursor: pointer;
+            min-width: 140px;
+        }
+        .note-matrix {
+            background: var(--ensias-red-light);
+            padding: 16px 20px;
+            border-radius: var(--radius);
+            margin-top: 16px;
+            font-size: 0.95rem;
+            border-left: 4px solid var(--ensias-red);
+        }
+
+        /* ===== LAUREATS ===== */
+        .laureats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+        .laureat-card {
+            background: white;
+            padding: 18px 16px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: all var(--transition);
+            border-bottom: 3px solid transparent;
+        }
+        .laureat-card:hover {
+            transform: translateY(-4px);
+            border-bottom-color: var(--ensias-red);
+            box-shadow: var(--shadow-hover);
+        }
+        .laureat-card .name {
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+        .laureat-card .filiere {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+        }
+        .laureat-card .school {
+            font-size: 0.9rem;
+            color: var(--ensias-red);
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        /* ===== DOCUMENTS (ZIP) ===== */
+        .doc-zip-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            border: 3px dashed var(--ensias-red);
+            transition: all var(--transition);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .doc-zip-card:hover {
+            border-color: var(--ensias-red-dark);
+            transform: scale(1.01);
+        }
+        .doc-zip-card i {
+            font-size: 4rem;
+            color: var(--ensias-red);
+            margin-bottom: 16px;
+        }
+        .doc-zip-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+        .doc-zip-card p {
+            color: var(--gray-600);
+            margin-bottom: 20px;
+        }
+
+        /* ===== FAQ (accordéon) ===== */
+        .faq-item {
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 12px;
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+        }
+        .faq-question {
+            padding: 18px 24px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background var(--transition);
+        }
+        .faq-question:hover {
+            background: var(--ensias-red-light);
+        }
+        .faq-question i {
+            transition: transform var(--transition);
+            color: var(--ensias-red);
+        }
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            padding: 0 24px 20px;
+            color: var(--gray-600);
+            display: none;
+            line-height: 1.7;
+        }
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* ===== CONTACT ===== */
+        .contact-block {
+            background: var(--ensias-red);
+            color: white;
+            padding: 40px;
+            border-radius: var(--radius);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .contact-block h3 {
+            font-size: 1.4rem;
+        }
+        .contact-block .btn-outline-light {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 10px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .contact-block .btn-outline-light:hover {
+            background: white;
+            color: var(--ensias-red);
+        }
+        .contact-block .email-box {
+            margin-top: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .contact-block .email-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .contact-block .email-item i {
+            font-size: 0.9rem;
+        }
+        .initiative-badge {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 4px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-top: 6px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #1e1e2a;
+            color: #adb5bd;
+            padding: 30px 0;
+            text-align: center;
+            font-size: 0.9rem;
+            border-top: 4px solid var(--ensias-red);
+        }
+        footer .heart {
+            color: var(--ensias-red);
+        }
+        footer .initiative {
+            margin-top: 6px;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 12px;
+                background: white;
+                padding: 20px;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                border-radius: 0 0 var(--radius) var(--radius);
+            }
+            .nav-links.open {
+                display: flex;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            .hero-stats {
+                grid-template-columns: repeat(3, 1fr);
+                padding: 20px;
+            }
+            .stat-number {
+                font-size: 1.6rem;
+            }
+            .contact-block {
+                flex-direction: column;
+                text-align: center;
+            }
+            section {
+                padding: 50px 0;
+            }
+            .dossier-grid {
+                grid-template-columns: 1fr;
+            }
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+            .partners-showcase {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+        }
+        @media (max-width: 480px) {
+            .hero-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+            .filter-bar input,
+            .filter-bar select {
+                width: 100%;
+            }
+            .contact-block .email-box {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-globe-africa"></i> ENSIAS Mobilité
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#processus">Processus</a></li>
+                <li><a href="#dossier">Dossier</a></li>
+                <li><a href="#partenaires">Partenaires</a></li>
+                <li><a href="#laureats">Laureats</a></li>
+                <li><a href="#documents">Documents</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Mobilité Internationale <br><span>ENSIAS 2026-2027</span></h1>
+                <p>Préparez votre double diplôme ou échange dans l'une de nos écoles partenaires. Retrouvez ici toutes les informations, la matrice d'alignement et les témoignages des laureats.</p>
+                <div class="hero-cta">
+                    <a href="#partenaires" class="btn btn-primary"><i class="fas fa-arrow-right"></i> Voir les partenaires</a>
+                    <a href="#documents" class="btn btn-outline"><i class="fas fa-file-archive"></i> Télécharger les docs</a>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Écoles partenaires</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">47</div>
+                    <div class="stat-label">Laureats 2025-2026</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label">Pays d'accueil</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== SECTION PROCESSUS (4 PASSES) ===== -->
+    <section id="processus">
+        <div class="container">
+            <h2 class="section-title">Algorithme de sélection</h2>
+            <p class="section-sub">Découvrez les 4 passes de l'algorithme de mobilité internationale.</p>
+            <div class="process-grid">
+
+                <!-- Passe 1 -->
+                <div class="process-card">
+                    <div class="step">Passe 1</div>
+                    <h3>Éligibilité initiale</h3>
+                    <p>Sélection des étudiants éligibles pour soumettre leurs desiderata.</p>
+                    <div class="highlight">
+                        <strong>Critères :</strong>
+                        <ul class="detail-list">
+                            <li>Pas de redoublement en A1</li>
+                            <li>Pas de blâme</li>
+                            <li>Moyenne des modules A1 (sans PFA) &gt; 12.5</li>
+                        </ul>
+                    </div>
+                    <p style="margin-top: 8px; font-size: 0.85rem; color: var(--gray-600);">
+                        <i class="fas fa-arrow-right" style="color: var(--ensias-red);"></i>
+                        <strong>Output :</strong> Liste publique des éligibles
+                    </p>
+                </div>
+
+                <!-- Passe 2 -->
+                <div class="process-card">
+                    <div class="step">Passe 2</div>
+                    <h3>Desiderata</h3>
+                    <p>Les étudiants éligibles classent les écoles partenaires par ordre de préférence.</p>
+                    <div class="highlight">
+                        <strong>Règles :</strong>
+                        <ul class="detail-list">
+                            <li>Respect de la <strong>matrice d'alignement</strong> (fléchage pédagogique)</li>
+                            <li>Aucun changement de desiderata admis après soumission</li>
+                        </ul>
+                    </div>
+                    <p style="margin-top: 8px; font-size: 0.85rem; color: var(--gray-600);">
+                        <i class="fas fa-arrow-right" style="color: var(--ensias-red);"></i>
+                        <strong>Output :</strong> Liste des desiderata
+                    </p>
+                </div>
+
+                <!-- Passe 3 -->
+                <div class="process-card">
+                    <div class="step">Passe 3</div>
+                    <h3>Affectation FIFO</h3>
+                    <p>Classement et affectation des étudiants aux places disponibles.</p>
+                    <div class="highlight">
+                        <strong>Critère d'éligibilité S3 :</strong>
+                        <ul class="detail-list">
+                            <li>Moyenne S3 avant rattrapage ≥ max(médiane_filière_S3, 12.5)</li>
+                        </ul>
+                    </div>
+                    <div class="formula-box">
+                        Note = 0,8 × (moyenne 11 modules communs) + 0,2 × (moyenne modules spécifiques)
+                    </div>
+                    <div class="modules-list">
+                        <strong>Modules communs (11) :</strong><br>
+                        <span>Algo &amp; SD</span> <span>Architecture</span> <span>Statistiques</span>
+                        <span>Modélisation</span> <span>Langues 1</span> <span>Power Skills</span>
+                        <span>BD</span> <span>Réseaux</span> <span>IA</span>
+                        <span>Langues 2</span> <span>Économie digitale</span>
+                    </div>
+                    <div class="highlight" style="margin-top: 10px;">
+                        <strong>Seuils :</strong>
+                        <ul class="detail-list">
+                            <li>Minimum 10% des effectifs par filière</li>
+                            <li>Maximum 30% des effectifs par filière</li>
+                            <li>Seuil dynamique ≈ 13.5 (ajustable jusqu'à 12.5)</li>
+                        </ul>
+                    </div>
+                    <p style="margin-top: 8px; font-size: 0.85rem; color: var(--gray-600);">
+                        <i class="fas fa-arrow-right" style="color: var(--ensias-red);"></i>
+                        <strong>Output :</strong> Affectation FIFO
+                    </p>
+                </div>
+
+                <!-- Passe 4 -->
+                <div class="process-card">
+                    <div class="step">Passe 4</div>
+                    <h3>Entretien</h3>
+                    <p>Validation finale de la mobilité par un comité de sélection.</p>
+                    <div class="highlight">
+                        <strong>Règles :</strong>
+                        <ul class="detail-list">
+                            <li>Présentation de l'<strong>engagement financier</strong> signé</li>
+                            <li>Absence = désistement définitif</li>
+                            <li>Pas de "down-selection" : l'étudiant garde sa meilleure place</li>
+                            <li>Si une place se libère, elle est proposée au plus méritant</li>
+                        </ul>
+                    </div>
+                    <div class="highlight" style="margin-top: 10px; background: #fff3cd;">
+                        <strong>Critères d'évaluation :</strong>
+                        <ul class="detail-list">
+                            <li>Motivation</li>
+                            <li>Aspects financiers</li>
+                            <li>Aptitude d'adaptation (quotient émotionnel)</li>
+                        </ul>
+                    </div>
+                    <p style="margin-top: 8px; font-size: 0.85rem; color: var(--gray-600);">
+                        <i class="fas fa-arrow-right" style="color: var(--ensias-red);"></i>
+                        <strong>Output :</strong> Affectation définitive
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECTION DOSSIER DE CANDIDATURE ===== -->
+    <section id="dossier" style="background: var(--gray-100);">
+        <div class="container">
+            <h2 class="section-title">Dossier de candidature</h2>
+            <p class="section-sub">Pièces obligatoires à fournir pour constituer votre dossier de mobilité.</p>
+            <div class="dossier-grid">
+                <div class="dossier-item"><i class="fas fa-id-card"></i><span>CV (date, lieu naissance, adresse, nationalité, email...)</span></div>
+                <div class="dossier-item"><i class="fas fa-file-alt"></i><span>Lettre de motivation (filière/parcours choisi)</span></div>
+                <div class="dossier-item"><i class="fas fa-book-open"></i><span>Plan des cours ENSIAS</span></div>
+                <div class="dossier-item"><i class="fas fa-pen-fancy"></i><span>Lettre de recommandation</span></div>
+                <div class="dossier-item"><i class="fas fa-file-pdf"></i><span>Relevés de notes depuis le bac</span></div>
+                <div class="dossier-item"><i class="fas fa-graduation-cap"></i><span>Copie du baccalauréat</span></div>
+                <div class="dossier-item"><i class="fas fa-award"></i><span>Diplômes obtenus</span></div>
+                <div class="dossier-item"><i class="fas fa-language"></i><span>Attestation de niveau B2 (français + anglais)</span></div>
+                <div class="dossier-item"><i class="fas fa-trophy"></i><span>Attestation officielle de classement (ESISAR)</span></div>
+                <div class="dossier-item"><i class="fas fa-camera"></i><span>Photo d'identité numérique</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECTION PARTENAIRES ===== -->
+    <section id="partenaires">
+        <div class="container">
+            <h2 class="section-title">Écoles partenaires</h2>
+            <p class="section-sub">Découvrez l'ensemble des établissements partenaires par pays.</p>
+
+            <!-- === CARTES PAR PAYS === -->
+            <div class="partners-showcase" id="partnerShowcase">
+                <!-- injecté en JS -->
+            </div>
+
+            <!-- === TABLEAU DÉTAILLÉ === -->
+            <h3 style="margin: 40px 0 16px; font-weight: 600; font-size: 1.3rem;">Matrice d'alignement détaillée</h3>
+            <p style="color: var(--gray-600); margin-bottom: 20px; font-size: 0.95rem;">
+                <span style="font-size: 0.9rem; color: var(--ensias-red);">* Matrice indicative de l'année 2025-2026 – susceptible d'évoluer.</span>
+            </p>
+
+            <div class="filter-bar">
+                <input type="text" id="searchPartner" placeholder="Rechercher un partenaire...">
+                <select id="filterType">
+                    <option value="all">Tous les types</option>
+                    <option value="DD">Double Diplôme (DD)</option>
+                    <option value="EC">Échange (EC)</option>
+                    <option value="both">Les deux</option>
+                </select>
+                <select id="filterCountry">
+                    <option value="all">Tous les pays</option>
+                    <!-- injecté en JS -->
+                </select>
+            </div>
+
+            <div class="table-wrapper">
+                <table id="partnerTable">
+                    <thead>
+                        <tr>
+                            <th>Partenaire</th>
+                            <th>Pays</th>
+                            <th>Filières compatibles</th>
+                            <th>Type</th>
+                            <th>Places DD</th>
+                            <th>Places EC</th>
+                        </tr>
+                    </thead>
+                    <tbody id="partnerBody">
+                        <!-- injecté en JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="note-matrix">
+                <i class="fas fa-exclamation-triangle" style="color: var(--ensias-red); margin-right: 8px;"></i>
+                <strong>Important :</strong> Les étudiants doivent impérativement respecter le fléchage pédagogique. Par exemple, la filière <strong>IDF</strong> est fléchée vers ENSIMAG IF, et <strong>SSE</strong> vers Phelma SEOC, etc. Consultez la matrice complète dans la section documents.
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECTION LAUREATS ===== -->
+    <section id="laureats" style="background: var(--gray-100);">
+        <div class="container">
+            <h2 class="section-title">Laureats 2025-2026</h2>
+            <p class="section-sub">Découvrez les étudiants qui ont été présélectionnés pour une mobilité internationale cette année.</p>
+            <div class="laureats-grid" id="laureatsGrid">
+                <!-- injecté en JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECTION DOCUMENTS (ZIP) ===== -->
+    <section id="documents">
+        <div class="container">
+            <h2 class="section-title">Documents utiles</h2>
+            <p class="section-sub">Téléchargez l'ensemble des documents officiels en un seul fichier ZIP.</p>
+            <div class="doc-zip-card">
+                <i class="fas fa-file-archive"></i>
+                <h3>Pack complet de la mobilité</h3>
+                <p>Contient : Matrice d'alignement, Charte de mobilité, Dossier de candidature, FAQ officielle.</p>
+                <a href="DOSSIER MOBILITE.zip" class="btn btn-primary" style="padding: 14px 36px; font-size: 1rem;">
+                    <i class="fas fa-download"></i> Télécharger le ZIP
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECTION FAQ ===== -->
+    <section id="faq" style="background: var(--gray-100);">
+        <div class="container">
+            <h2 class="section-title">Foire aux questions</h2>
+            <p class="section-sub">Les réponses aux questions les plus fréquentes sur la mobilité.</p>
+            <div id="faqContainer">
+                <!-- injecté en JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECTION CONTACT ===== -->
+    <section id="contact">
+        <div class="container">
+            <div class="contact-block">
+                <div>
+                    <h3><i class="fas fa-envelope"></i> Contact</h3>
+                    <p style="opacity: 0.9; margin-top: 4px;">Pour toute question sur la mobilité, n'hésitez pas à me contacter.</p>
+                    <div class="email-box">
+                        <span class="email-item"><i class="fas fa-user-graduate"></i> hichouhiba@gmail.com</span>
+                        <span class="email-item"><i class="fas fa-university"></i> relations.internationales.ensias@um5.ac.ma</span>
+                    </div>
+                </div>
+                <a href="mailto:hichouhiba@gmail.com" class="btn-outline-light">M'écrire <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <p>© 2026 <span>ENSIAS</span> – Initiative étudiante réalisée par <span style="color: var(--ensias-red);">Hiba Lhichou</span></p>
+            <p class="initiative">Site informatif dédié à la mobilité internationale — <i class="fas fa-heart heart"></i> pour aider les étudiants</p>
+        </div>
+    </footer>
+
+    <script>
+        // ============================================================
+        // DONNÉES
+        // ============================================================
+
+        const partenaires = [
+            { nom: "EMSE/ICM", pays: "France", filieres: "ICM (Ingénieur Civil des MINES)", type: "DD", placesDD: 2,
+                placesEC: 0 },
+            { nom: "ENSEEIHT", pays: "France", filieres: "Image & Multimédia, HPC, BigData, IoT, Cybersécurité, Modélisation & IA",
+                type: "both", placesDD: 2, placesEC: 2 },
+            { nom: "ENSIMAG", pays: "France", filieres: "ISI (IDF), MMIS, IF", type: "DD", placesDD: 7, placesEC: 0 },
+            { nom: "ISIMA", pays: "France", filieres: "F1 à F5 (Informatique, GL, SIAD, IA, Réseaux)", type: "DD",
+                placesDD: 5, placesEC: 0 },
+            { nom: "ENSEIRB-MATMECA", pays: "France", filieres: "Informatique (GL, CISD, IA, AMF, RSR, RA)", type: "EC",
+                placesDD: 0, placesEC: 2 },
+            { nom: "UniCal", pays: "Italie", filieres: "Ingegneria Informatica", type: "EC", placesDD: 0, placesEC: 3 },
+            { nom: "ESISAR", pays: "France", filieres: "SIS, SES, SEC, S2C (Informatique, Electronique embarquée)",
+                type: "both", placesDD: 2, placesEC: 4 },
+            { nom: "ESIEE", pays: "France", filieres: "Informatique, Cybersécurité, Data Science, IA, Systèmes embarqués",
+                type: "EC", placesDD: 0, placesEC: 2 },
+            { nom: "EILCO", pays: "France", filieres: "Informatique", type: "both", placesDD: 4, placesEC: 2 },
+            { nom: "TSE", pays: "France", filieres: "Architecture logicielle, Cybersécurité, Systèmes embarqués, Image & IA",
+                type: "DD", placesDD: 4, placesEC: 0 },
+            { nom: "AALTO", pays: "Finlande", filieres: "Technologie (selon accord)", type: "EC", placesDD: 0,
+            placesEC: 2 },
+            { nom: "ENSIIE", pays: "France", filieres: "Génie Logiciel, Interactions Numériques, Math. appl., Calcul intensif",
+                type: "both", placesDD: 2, placesEC: 2 },
+            { nom: "ENSIM", pays: "France", filieres: "ASTRE (SSE), IPS (Autres)", type: "DD", placesDD: 4, placesEC: 0 },
+            { nom: "Phelma", pays: "France", filieres: "SEI, SEOC (SSE), SICOM", type: "DD", placesDD: 2, placesEC: 0 },
+            { nom: "HBRSU", pays: "Allemagne", filieres: "Autonomous Systems (Msc)", type: "EC", placesDD: 0,
+            placesEC: 2 },
+            { nom: "EMSE/ISMIN", pays: "France", filieres: "Informatique et microélectronique", type: "DD", placesDD: 1,
+                placesEC: 0 },
+            { nom: "UNIV-PAU", pays: "France", filieres: "SIGLIS (2SCL), INDUSTRY", type: "DD", placesDD: 4,
+            placesEC: 0 },
+            { nom: "Ense3", pays: "France", filieres: "SICOM (avec Phelma), ASI", type: "EC", placesDD: 0, placesEC: 1 },
+            { nom: "Sherbrooke FGénie", pays: "Canada", filieres: "Maîtrise (type cours/recherche)", type: "DD",
+                placesDD: 2, placesEC: 0 },
+            { nom: "Sherbrooke FS", pays: "Canada", filieres: "Maîtrise en informatique et génie logiciel", type: "DD",
+                placesDD: 4, placesEC: 0 },
+            { nom: "Grenoble INP - Génie Industriel", pays: "France", filieres: "ICL, IdP (affinité 2SCL)", type: "EC",
+                placesDD: 0, placesEC: 2 }
+        ];
+
+        // Laureats
+        const laureats = [
+            { nom: "HAKKOU AYA", filiere: "GL", ecole: "ENSIMAG2" },
+            { nom: "TAKI AYA", filiere: "D2S", ecole: "ENSIMAG2" },
+            { nom: "ELOULJI SOUFIANE", filiere: "GD", ecole: "ENSIMAG2" },
+            { nom: "ELAOULA MOUHSINE", filiere: "GD", ecole: "ENSIMAG2" },
+            { nom: "DAO SIDIKI", filiere: "IDF", ecole: "ENSIMAG1" },
+            { nom: "MAHBOUB WISSAL", filiere: "GD", ecole: "UNICAL" },
+            { nom: "EL BOJADDAINI OUIDAD", filiere: "GL", ecole: "ENSIMAG2" },
+            { nom: "SOUKROUMDE MARCELLIN", filiere: "IDF", ecole: "ENSIMAG1" },
+            { nom: "KADDOURI AYOUB", filiere: "GL", ecole: "ENSEEIHT (DD)" },
+            { nom: "BENYAHIA GHALI", filiere: "GL", ecole: "ENSEEIHT (DD)" },
+            { nom: "SAMIH MAROUA", filiere: "IDF", ecole: "EILCO(DD)" },
+            { nom: "L'HICHOU HIBA", filiere: "BIA", ecole: "ENSIIE (DD)" },
+            { nom: "ZAKOUR SALMA", filiere: "GL", ecole: "ISIMA" },
+            { nom: "CHOUKRI MARWA", filiere: "GL", ecole: "ISIMA" },
+            { nom: "BENABBOUSAFAE", filiere: "BIA", ecole: "ENSIIE (DD)" },
+            { nom: "SAOUD OMAR", filiere: "2IA", ecole: "ISIMA" },
+            { nom: "REGHIOUI HAMZAOUI MOHAMED YASSINE", filiere: "GL", ecole: "Ense3 (EC)" },
+            { nom: "EL ASSOULI AMJAD", filiere: "BIA", ecole: "EMSE/ICM (DD)" },
+            { nom: "MANSARE FRANCOIS", filiere: "IDF", ecole: "EMSE/ICM (DD)" },
+            { nom: "AASSOUANI HOUSSAME", filiere: "D2S", ecole: "TSE" },
+            { nom: "SDIGUI LINA", filiere: "BIA", ecole: "ISIMA" },
+            { nom: "BENABID AYA", filiere: "BIA", ecole: "SHERBROOKE FS" },
+            { nom: "EDDAOUDI MOHAMED AYMANE", filiere: "D2S", ecole: "SHERBROOKE FS" },
+            { nom: "JAOUDAR ADAM", filiere: "IDF", ecole: "ENSIIE (EC)" },
+            { nom: "TETE FOLLY MATHIAS", filiere: "CSCMC", ecole: "TSE" },
+            { nom: "BEN YOUSSEF CHAIMAE", filiere: "2SCL", ecole: "ISIMA" },
+            { nom: "AIT HAMMOU MARWA", filiere: "CSCMC", ecole: "TSE" },
+            { nom: "FALAQ JAD", filiere: "2IA", ecole: "Phelma (DD)" },
+            { nom: "LAMEGHAIZI KAWTAR", filiere: "GL", ecole: "ENSEEIHT (EC)" },
+            { nom: "ZBAKH ACHRAF", filiere: "D2S", ecole: "EILCO(DD)" },
+            { nom: "ASSEBBANE SAFAA", filiere: "2SCL", ecole: "EMSE/ISMIN" },
+            { nom: "FATIH OTHMANE", filiere: "D2S", ecole: "TSE" },
+            { nom: "EL-IYSAOUY FATIMA ZAHRA", filiere: "BIA", ecole: "ENSEEIHT (EC)" },
+            { nom: "ALLOUCH SALMA", filiere: "2SCL", ecole: "UNIV-PAU" },
+            { nom: "LAHNINE MOHAMED AMINE", filiere: "D2S", ecole: "EILCO(DD)" },
+            { nom: "EL GAOU NOUEMANE", filiere: "2IA", ecole: "AALTO" },
+            { nom: "AQIL ALI", filiere: "2IA", ecole: "ENSEIRB-MATMECA (EC)" },
+            { nom: "HAMDOUNI HIBA", filiere: "GD", ecole: "UNICAL" },
+            { nom: "HAMDOUNE RIM", filiere: "BIA", ecole: "UNICAL" },
+            { nom: "HOUNAOUI HAFSA", filiere: "GL", ecole: "ENSEIRB-MATMECA (EC)" },
+            { nom: "LAHBIB ABDEL ALIME", filiere: "D2S", ecole: "Phelma (DD)" },
+            { nom: "ABBOUNOUR-EDDINE", filiere: "D2S", ecole: "SHERBROOKE FS" },
+            { nom: "BEN OUAZAR AMINA", filiere: "IDF", ecole: "ENSIIE(EC)" },
+            { nom: "ROCHDI ZAKARIA", filiere: "2IA", ecole: "ESISAR(EC)" },
+            { nom: "LEBOUIZ MOHAMED", filiere: "2IA", ecole: "SHERBROOKE FS" },
+            { nom: "ZAHRI OTHMANE", filiere: "D2S", ecole: "EILCO(DD)" },
+            { nom: "QASSI MERYEM", filiere: "IDF", ecole: "ENSIM2(DD)" }
+        ];
+
+        // FAQ
+        const faqData = [{
+            q: "Les attestations de langues sont-elles indispensables ?",
+            a: "Oui, elles sont nécessaires. Pour le français, demandez une attestation à la scolarité. Pour l'anglais, contactez votre professeur d'anglais."
+        }, {
+            q: "Si je remplis le formulaire puis décide de ne pas partir, que se passe-t-il ?",
+            a: "Il est recommandé de ne remplir le formulaire que si vous êtes réellement en mesure de partir. Les étudiants qui savent qu'ils ne pourront pas assumer les coûts ne devraient pas déposer leur candidature."
+        }, {
+            q: "L'École des Mines Saint-Étienne organise-t-elle son propre entretien ?",
+            a: "Oui, l'École des Mines Saint-Étienne organise son propre entretien de sélection en plus de celui de l'ENSIAS. Si l'étudiant n'est pas accepté, il ne sera pas réaffecté à une autre école."
+        }, {
+            q: "Comment remplir le choix de filières pour ISIMA ?",
+            a: "Indiquez le rang du choix suivi des trois filières dans la même case, par exemple : 2 (F2, F3, F4)."
+        }, {
+            q: "Faut-il fournir le bac original ?",
+            a: "Il faut scanner le bac original. Vous pouvez retirer temporairement votre bac à la scolarité pour le scanner."
+        }, {
+            q: "Les étudiants en double diplôme doivent-ils faire le stage de 2A (PFA) ?",
+            a: "Non, les étudiants qui partent en double diplôme (DD) ne sont pas tenus de faire le stage de 2e année."
+        }, {
+            q: "Quand commence la procédure de visa ?",
+            a: "La procédure de visa commence après réception de l'attestation d'acceptation envoyée par l'établissement d'accueil."
+        }];
+
+        // ============================================================
+        // FONCTIONS
+        // ============================================================
+
+        // Extraire les pays uniques
+        const countries = [...new Set(partenaires.map(p => p.pays))].sort();
+
+        // Rendre les badges par pays
+        function renderPartnerShowcase() {
+            const container = document.getElementById('partnerShowcase');
+            container.innerHTML = '';
+            // Drapeaux approximatifs (emoji)
+            const flags = {
+                'France': '🇫🇷',
+                'Italie': '🇮🇹',
+                'Finlande': '🇫🇮',
+                'Canada': '🇨🇦',
+                'Allemagne': '🇩🇪'
+            };
+            countries.forEach(pays => {
+                const count = partenaires.filter(p => p.pays === pays).length;
+                const div = document.createElement('div');
+                div.className = 'partner-badge';
+                div.innerHTML = `
+                        <span class="flag">${flags[pays] || '🌍'}</span>
+                        <div class="pays">${pays}</div>
+                        <div class="count">${count} établissement${count > 1 ? 's' : ''}</div>
+                    `;
+                // Click pour filtrer le tableau
+                div.style.cursor = 'pointer';
+                div.addEventListener('click', function() {
+                    document.getElementById('filterCountry').value = pays;
+                    filterPartners();
+                });
+                container.appendChild(div);
+            });
+        }
+
+        // Remplir le filtre pays
+        function populateCountryFilter() {
+            const select = document.getElementById('filterCountry');
+            // Garder l'option "Tous les pays"
+            select.innerHTML = '<option value="all">Tous les pays</option>';
+            countries.forEach(pays => {
+                const opt = document.createElement('option');
+                opt.value = pays;
+                opt.textContent = pays;
+                select.appendChild(opt);
+            });
+        }
+
+        // Rendre le tableau des partenaires
+        function renderPartners(data) {
+            const tbody = document.getElementById('partnerBody');
+            tbody.innerHTML = '';
+            data.forEach(p => {
+                const typeBadge = p.type === 'DD' ? '<span class="badge badge-dd">DD</span>' :
+                    p.type === 'EC' ? '<span class="badge badge-ec">Échange</span>' :
+                    '<span class="badge badge-both">DD+Échange</span>';
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                        <td><strong>${p.nom}</strong></td>
+                        <td>${p.pays}</td>
+                        <td style="font-size:0.85rem;">${p.filieres}</td>
+                        <td>${typeBadge}</td>
+                        <td>${p.placesDD}</td>
+                        <td>${p.placesEC}</td>
+                    `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Filtrer les partenaires
+        function filterPartners() {
+            const search = document.getElementById('searchPartner').value.toLowerCase();
+            const type = document.getElementById('filterType').value;
+            const country = document.getElementById('filterCountry').value;
+
+            const filtered = partenaires.filter(p => {
+                const matchSearch = p.nom.toLowerCase().includes(search) ||
+                    p.pays.toLowerCase().includes(search) ||
+                    p.filieres.toLowerCase().includes(search);
+                let matchType = true;
+                if (type === 'DD') matchType = p.type === 'DD' || p.type === 'both';
+                else if (type === 'EC') matchType = p.type === 'EC' || p.type === 'both';
+                const matchCountry = country === 'all' || p.pays === country;
+                return matchSearch && matchType && matchCountry;
+            });
+            renderPartners(filtered);
+        }
+
+        // Rendre les laureats
+        function renderLaureats() {
+            const grid = document.getElementById('laureatsGrid');
+            grid.innerHTML = '';
+            laureats.forEach(l => {
+                const card = document.createElement('div');
+                card.className = 'laureat-card';
+                card.innerHTML = `
+                        <div class="name">${l.nom}</div>
+                        <div class="filiere">${l.filiere}</div>
+                        <div class="school">${l.ecole}</div>
+                    `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Rendre la FAQ
+        function renderFAQ() {
+            const container = document.getElementById('faqContainer');
+            container.innerHTML = '';
+            faqData.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'faq-item';
+                div.innerHTML = `
+                        <div class="faq-question" data-index="${index}">
+                            <span>${item.q}</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">${item.a}</div>
+                    `;
+                container.appendChild(div);
+            });
+
+            document.querySelectorAll('.faq-question').forEach(q => {
+                q.addEventListener('click', function() {
+                    const parent = this.parentElement;
+                    const isActive = parent.classList.contains('active');
+                    document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('active'));
+                    if (!isActive) {
+                        parent.classList.add('active');
+                    }
+                });
+            });
+        }
+
+        // ============================================================
+        // INITIALISATION & ÉVÉNEMENTS
+        // ============================================================
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Rendre les badges par pays
+            renderPartnerShowcase();
+            // Remplir le filtre pays
+            populateCountryFilter();
+            // Rendre le tableau complet
+            renderPartners(partenaires);
+            // Rendre les laureats
+            renderLaureats();
+            // Rendre la FAQ
+            renderFAQ();
+            // Activer le premier élément FAQ
+            document.querySelector('.faq-item')?.classList.add('active');
+
+            // Écouteurs des filtres
+            document.getElementById('searchPartner').addEventListener('input', filterPartners);
+            document.getElementById('filterType').addEventListener('change', filterPartners);
+            document.getElementById('filterCountry').addEventListener('change', filterPartners);
+        });
+
+        // Menu mobile
+        document.getElementById('mobileToggle').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('open');
+        });
+
+        console.log('Site ENSIAS Mobilité prêt !');
+    </script>
+</body>
+</html>
